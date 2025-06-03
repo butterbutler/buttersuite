@@ -13,51 +13,52 @@ Rayfield:Notify({
 --window
 local Window = Rayfield:CreateWindow({
    Name = "Butter's Suite v.test-build.0.1",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   Icon = "scroll-text",
    LoadingTitle = "Butter Debugging Suite",
    LoadingSubtitle = "buttery smooth experience",
-   Theme = "Serenity", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+   Theme = "Serenity",
 
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+   DisableRayfieldPrompts = true,
+   DisableBuildWarnings = false,
 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "CDS"
+      FolderName = nil,
+      FileName = "buttersweet"
    },
 
    Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      Enabled = false,
+      Invite = "noinvitelink",
+      RememberJoins = true
    },
 
-   KeySystem = false, -- Set this to true to use our key system
+   KeySystem = false, 
    KeySettings = {
       Title = "not really a key system",
       Subtitle = "it's open source xd",
-      Note = "The key is key", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"key"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Note = "The key is key",
+      FileName = "Key",
+      SaveKey = true,
+      GrabKeyFromSite = false,
+      Key = {"key"}
    }
 })
 
 --tab 
 
-local BasicTab = Window:CreateTab("Basic", "shield-off") -- Title, Image
-local EPTab = Window:CreateTab("EP", "star") -- Title, Image
-local DebugTab = Window:CreateTab("Debugging", "bug") -- Title, Image
-local HubsTab = Window:CreateTab("Script Hubs", "circle-ellipsis") -- Title, Image
+local BasicTab = Window:CreateTab("Basic", "shield-off")
+local GUIsTab = Window:CreateTab("GUIs", "wallpaper")
+local EPTab = Window:CreateTab("EP", "star")
+local DebugTab = Window:CreateTab("Debugging", "bug")
+local HubsTab = Window:CreateTab("Script Hubs", "circle-ellipsis")
 
 
 --buttons
 local Button1 = BasicTab:CreateButton({
    Name = "Inf Jump (Disabled)",
    Callback = function()
-   -- The function that takes place when the button is pressed
+   -- function here
    end,
 })
 
@@ -74,7 +75,7 @@ local Slider1 = BasicTab:CreateSlider({
    Increment = 1,
    Suffix = "Speed",
    CurrentValue = 16,
-   Flag = "sliderws", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "sliderws", 
    Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
    end,
@@ -86,22 +87,58 @@ local Slider = BasicTab:CreateSlider({
    Increment = 1,
    Suffix = "Speed",
    CurrentValue = 16,
-   Flag = "sliderjp", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Flag = "sliderjp", 
    Callback = function(Value)
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
    end,
 })
 
-local Button = BasicTab:CreateButton({
+local Button3 = BasicTab:CreateButton({
    Name = "All R15 Emotes (keybind = comma)",
    Callback = function()
    loadstring(game:HttpGet('https://raw.githubusercontent.com/Gi7331/scripts/main/Emote.lua'))()     
    end,
 })
 
-local Button HubsTab:CreateButton({
+local Button1 HubsTab:CreateButton({
    Name = "Ghost Hub X",
    Callback = function()
    loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()     
+   end,
+})
+
+local Button1 DebugTab:CreateButton({
+   Name = "Dex",
+   Callback = function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/infyiff/backup/main/dex.lua'))()     
+   end,
+})
+
+local Button2 DebugTab:CreateButton({
+   Name = "DarkDex",
+   Callback = function()
+   loadstring(game:HttpGet('https://raw.githubusercontent.com/AlterX404/DarkDEX-V5/refs/heads/main/DarkDEX-V5'))()     
+   end,
+})
+
+local Button3 DebugTab:CreateButton({
+   Name = "SimpleSpy",
+   Callback = function()
+   loadstring(game:HttpGet('https://github.com/exxtremestuffs/SimpleSpySource/raw/master/SimpleSpy.lua'))()     
+   end,
+})
+
+local Button4 DebugTab:CreateButton({
+   Name = "Hydroxide",
+   Callback = function()
+  local owner = "Upbolt"
+local branch = "revision"
+
+local function webImport(file)
+    return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
+end
+
+webImport("init")
+webImport("ui/main")     
    end,
 })
